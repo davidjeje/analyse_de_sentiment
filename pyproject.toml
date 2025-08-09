@@ -29,10 +29,16 @@ dependencies = [
     "tensorflow-io-gcs-filesystem (==0.31.0)",
     "opencv-python (>=4.11.0.86,<5.0.0.0)",
     "opencv-contrib-python (>=4.11.0.86,<5.0.0.0)",
-    "nbmerge (>=0.0.4,<0.0.5)"
+    "nbmerge (>=0.0.4,<0.0.5)",
+    "optuna (>=4.4.0,<5.0.0)",
+    "datasets (>=4.0.0,<5.0.0)"
 ]
 
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.30.1"
+
