@@ -42,7 +42,7 @@ label_mapping = {
 
 @app.get("/")
 def read_root():
-    return {"message": "Hello World"}
+    return {"message": "API FastAPI OK"}
 
 @app.get("/health")
 def health_check():
