@@ -24,7 +24,7 @@ jobs:
         pip install -r app/requirements.txt
 
     - name: Run tests
-      run: pytest --maxfail=1 --disable-warnings -q
+      run: pytest test/ --maxfail=1 --disable-warnings -q
 
   deploy:
     needs: test
