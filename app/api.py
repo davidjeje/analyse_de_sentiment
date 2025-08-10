@@ -40,6 +40,10 @@ label_mapping = {
     4: "positive"
 }
 
+@app.get("/")
+def read_root():
+    return {"message": "Hello World"}
+
 @app.get("/health")
 def health_check():
     logger.info("Health check OK")
