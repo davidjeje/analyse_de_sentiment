@@ -22,9 +22,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r app/requirements.txt
-          pip install pytest  # Installation spécifique pour les tests
+          pip install pytest
 
       - name: Run tests
+        env:
+          TEST_ENV: "1"   # <--- IMPORTANT: force le mode test dans api.py
         run: PYTHONPATH=app pytest test/ --maxfail=1 --disable-warnings -q
 
   deploy:
@@ -45,13 +47,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r app/requirements.txt
 
-      # Connexion à Azure avec un service principal (AZURE_CREDENTIALS)
       - name: Azure Login
         uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      # Déploiement sur Azure Web App
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
@@ -59,6 +59,70 @@ jobs:
           slot-name: production
           package: app
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+
+
+
+# name: CI-CD pipeline
+
+# on:
+#   push:
+#     branches: [main]
+#   pull_request:
+#     branches: [main]
+
+# jobs:
+#   test:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - uses: actions/checkout@v4
+
+#       - name: Set up Python version
+#         uses: actions/setup-python@v5
+#         with:
+#           python-version: '3.10'
+
+#       - name: Install dependencies
+#         run: |
+#           python -m pip install --upgrade pip
+#           pip install -r app/requirements.txt
+#           pip install pytest  # Installation spécifique pour les tests
+
+#       - name: Run tests
+#         run: |
+#             PYTHONPATH=app TEST_ENV=1 pytest test/ --maxfail=1 --disable-warnings -q
+#   deploy:
+#     needs: test
+#     runs-on: ubuntu-latest
+#     if: github.ref == 'refs/heads/main'
+
+#     steps:
+#       - uses: actions/checkout@v4
+
+#       - name: Set up Python version
+#         uses: actions/setup-python@v5
+#         with:
+#           python-version: '3.10'
+
+#       - name: Install dependencies
+#         run: |
+#           python -m pip install --upgrade pip
+#           pip install -r app/requirements.txt
+
+#       # Connexion à Azure avec un service principal (AZURE_CREDENTIALS)
+#       - name: Azure Login
+#         uses: azure/login@v2
+#         with:
+#           creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+#       # Déploiement sur Azure Web App
+#       - name: Deploy to Azure Web App
+#         uses: azure/webapps-deploy@v3
+#         with:
+#           app-name: analyse-de-sentiment
+#           slot-name: production
+#           package: app
+#           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
 
       # Optionnel : Tests post-déploiement
       # - name: Post-deployment test
