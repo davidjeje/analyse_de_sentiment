@@ -25,7 +25,7 @@ jobs:
           pip install pytest  # Installation spécifique pour les tests
 
       - name: Run tests
-        run: pytest test/ --maxfail=1 --disable-warnings -q
+        run: PYTHONPATH=app pytest test/ --maxfail=1 --disable-warnings -q
 
   deploy:
     needs: test
