@@ -25,6 +25,10 @@ else:
 class PredictionRequest(BaseModel):
     text: str
 
+@app.get("/health")
+async def health_check():
+    return {"status": "ok"}
+
 # Endpoint de test
 @app.get("/")
 def root():
