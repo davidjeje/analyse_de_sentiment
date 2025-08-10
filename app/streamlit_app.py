@@ -6,6 +6,7 @@ API_URL_TWEETS = "http://127.0.0.1:8000/tweets"
 
 st.title("Analyse de sentiment avec API FastAPI + MLflow")
 
+
 def load_tweets_once():
     if "tweets_list" not in st.session_state:
         try:
