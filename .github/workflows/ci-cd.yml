@@ -59,7 +59,6 @@ jobs:
           slot-name: production
           package: app
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          startup-command: "uvicorn main:app --host 0.0.0.0 --port 8000"
 
 
 
