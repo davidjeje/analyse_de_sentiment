@@ -21,7 +21,7 @@ logger.setLevel(logging.INFO)
 
 app = FastAPI()
 
-# L'URI que tu as donné pointe vers un run stocké sur ton tracking server
+# L'URI que tu as donné pointe vers un run stocké sur ton tracking server o
 model_uri = "runs:/62c9722eb896400dabe73d9302cddea7/model"
 
 # Exporter le modèle en local (si pas déjà téléchargé)
