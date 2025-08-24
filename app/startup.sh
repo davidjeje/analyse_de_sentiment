@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /home/site/wwwroot/app
+cd /home/site/wwwroot
 
 # Installer les dépendances
 pip install --upgrade pip
