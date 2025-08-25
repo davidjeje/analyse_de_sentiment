@@ -24,3 +24,4 @@ jobs:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: "analyse-de-sentiment"
           heroku_email: "david.marivat-larose@orange.fr"
+          
