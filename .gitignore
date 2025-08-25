@@ -1,1 +1,4 @@
 data/training.1600000.processed.noemoticon.csv
+app/data/training.1600000.processed.noemoticon.csv
+poetry.lock
+pyproject.toml
