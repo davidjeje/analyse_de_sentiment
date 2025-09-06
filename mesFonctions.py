@@ -26,11 +26,21 @@ def preprocess_text(text):
     # Suppression mentions et hashtags
     text = re.sub(r"@\w+|#\w+", "", text)
 
+
+     # Réduction des répétitions de lettres exagérées (cooooool -> cool)
+    # C'est la ligne la plus efficace pour gérer ce type de bruit.
+    text = re.sub(r'(.)\1{2,}', r'\1\1', text)
+
+    # Suppression des onomatopées ou rires typiques que vous voulez éliminer
+    # L'utilisation de '\b' garantit que vous supprimez des mots entiers.
+    # Ex: 'hahaha' est supprimé, mais 'hahahaa' ne l'est pas (il sera réduit à 'hahaa' par la regex précédente).
+    text = re.sub(r'\b(ha|hi|he|ho|lol|mdr)+\b', '', text)
+    
+    # Suppression de la ponctuation et des chiffres
+    text = re.sub(r"[^a-z\s]", "", text)
+    
     # Suppression ponctuation et chiffres
     text = re.sub(r"[^a-z\s]", "", text)
-
-    # Suppression des mots composés d’une seule lettre répétée (ex: "aaaa", "hahaha")
-    text = re.sub(r'\b([a-z])\1{2,}\b', '', text)
 
     # Tokenisation
     tokens = nltk.word_tokenize(text)
